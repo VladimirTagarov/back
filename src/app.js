@@ -1,4 +1,5 @@
 const http = require("http");
+const getUsers = require("./modeles/users");
 
 const hostname = "127.0.0.1";
 const port = 3003;
@@ -15,11 +16,11 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  if (req.url === "/users") {
+  if (req.url === "/?users") {
     res.statusCode = 200;
     res.statusMessage = "OK";
     res.setHeader("Content-type", "application/json");
-    res.write(`Hello, ${userName}`);
+    res.write(getUsers());
     res.end();
   } else if (req.url === "/?hello") {
     res.statusCode = 400;
